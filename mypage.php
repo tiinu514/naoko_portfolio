@@ -44,15 +44,15 @@ include 'action.php';
        </thead>
        <tbody>
          <?php
-         $database_row=$CustomerObj->remittanceHistory();
-         foreach($$database_row as $row){
+         $database_row = $CustomerObj->remittanceHistory();
+         foreach($database_row as $row){
          echo "
          <tr>
           <td>".$row["date"]."</td>
           <td>".$row["transfer_id"]."</td>
+          <td>".$row["bene_bank_name"]."</td>
           <td>".$row["bene_name"]."</td>
           <td>".$row["bene_ac_number"]."</td>
-          <td>".$row["bene_bank_name"]."</td>
           <td>".$row["rmt_amt"]."</td>
          </tr>";
           }
@@ -63,8 +63,6 @@ include 'action.php';
      <div class="btn bg-warning">Select from the past history</div>
      <a href="form_indi_application.php"><div class="btn bg-primary">Remittance to new beneficiary</div><a>
   </div>
-
-  
 </body>
  
 

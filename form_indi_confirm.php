@@ -96,7 +96,8 @@ if(isset($_POST['app_draft_i'])){
           <tr>
             <th class="text-right">Exchange rate @:&nbsp;</th>
             <td class="text-center">
-              <input class="border border-0 text-left bg-transparent" name="ex_rate" value="<?php echo number_format($ex_rate); ?>" readonly>
+            <?php echo number_format($ex_rate,4); ?>
+              <input type="hidden" class="border border-0 text-left bg-transparent" name="ex_rate" value="<?php echo $ex_rate; ?>" readonly>
             </td>
           </tr>
           <tr>
@@ -108,7 +109,8 @@ if(isset($_POST['app_draft_i'])){
           <tr>
             <th class="text-right">Remittance Amount:&nbsp;</th>
             <td class="text-center">
-              <input class="border border-0 text-left bg-transparent" name="rmt_amt" value="<?php echo number_format($rmt_amt); ?>" readonly>
+              <?php echo number_format($rmt_amt); ?>
+              <input type="hidden" class="border border-0 text-left bg-transparent" name="rmt_amt" value="<?php echo $rmt_amt; ?>" readonly>
             </td>
           </tr>
           <tr>
@@ -120,19 +122,22 @@ if(isset($_POST['app_draft_i'])){
           <tr>
             <th class="text-right">Cover Amount:&nbsp;</th>
             <td class="text-center">
-              <input class="border border-0 text-left bg-transparent" name="cover_amt" value="<?php echo number_format($cover_amt); ?>" readonly>
+            <?php echo number_format($cover_amt); ?>
+              <input type="hidden" class="border border-0 text-left bg-transparent" name="cover_amt" value="<?php echo $cover_amt; ?>" readonly>
             </td>
           </tr>
           <tr>
             <th class="text-right">Charge (JPY):&nbsp;</th>
             <td class="text-center">
-              <input class="border border-0 text-left bg-transparent" name="chg" value="<?php echo number_format($chg); ?>" readonly>
+            <?php echo number_format($chg); ?>
+              <input type="hidden" class="border border-0 text-left bg-transparent" name="chg" value="<?php echo $chg; ?>" readonly>
               </td>
           </tr>
           <tr>
             <th class="text-right">Total Payable Amount (JPY):&nbsp;</th>
             <td class="text-center">
-              <input class="border border-0 text-left bg-transparent" name="ttl_amt" value="<?php echo number_format($ttl_amt); ?>" readonly>
+            <?php echo number_format($ttl_amt); ?>
+              <input type="hidden" class="border border-0 text-left bg-transparent" name="ttl_amt" value="<?php echo $ttl_amt; ?>" readonly>
               </td>
           </tr>
           

@@ -9,6 +9,7 @@
   <meta name="author" content="">
 
   <?php include 'xheader.php'; ?>
+  <?php include 'action.php'; ?>
 
 </head>
 
@@ -67,12 +68,23 @@
         <div class="card h-100">
           <img class="card-img-top" src="https://placehold.it/300x200" alt="">
           <div class="card-body">
-            <h4 class="card-title"><i class="fa fa-exchange" aria-hidden="true"></i>Today's exchange rate for INR(TTS)</h4>
+          <h4 class="card-title"><i class="fa fa-exchange" aria-hidden="true"></i>Today's exchange rate for INR(TTS)</h4>
+            <ul>
+            <li>Standard rate:
+              <?php
+              $CustomerObj->getRate();
+              echo $_SESSION["rate"];
+              ?>
+            </li>
+            <li>More than JPY0.5M:</li>
+            <li>More than JPY1.0M:</li>
+            </ul>
+            <!-- <h4 class="card-title"><i class="fa fa-exchange" aria-hidden="true"></i>Today's exchange rate for INR(TTS)</h4>
             <ul>
             <li>Standard rate:</li>
             <li>More than JPY0.5M:</li>
             <li>More than JPY1.0M:</li>
-            </ul>
+            </ul> -->
           </div>
           <div class="card-footer">
             <a href="#" class="btn btn-primary">Find Out More!</a>
@@ -98,7 +110,7 @@
         <div class="card h-100">
           <img class="card-img-top" src="https://placehold.it/300x200" alt="">
           <div class="card-body">
-            <h4 class="card-title">Notice</h4>
+            <h4 class="card-title">Login</h4>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
           </div>
           <div class="card-footer">
@@ -112,7 +124,7 @@
         <div class="card h-100">
           <img class="card-img-top" src="https://placehold.it/300x200" alt="">
           <div class="card-body">
-            <h4 class="card-title">News</h4>
+            <h4 class="card-title">Sign up</h4>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
           </div>
           <div class="card-footer">
@@ -139,7 +151,7 @@
         <div class="card h-100">
           <img class="card-img-top" src="https://placehold.it/300x200" alt="">
           <div class="card-body">
-            <h4 class="card-title">Access</h4>
+            <h4 class="card-title">News</h4>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
           </div>
           <div class="card-footer">

@@ -25,7 +25,7 @@ if(isset($_POST['ex_update'])){
 
 <body>
   <!-- Navigation -->
- <?php include 'xNavigation.php'; ?>
+  <?php include 'xNavigation_admin.php'; ?>
  <div class="container jumbotron mt-4"> 
    <form action="action.php" method="post">
     <div class="col-md-12 pt-3">

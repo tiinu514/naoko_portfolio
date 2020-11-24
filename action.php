@@ -32,7 +32,7 @@ if(isset($_POST['ex_yes'])){
 
 // echo $date,$rate;
 
-  $CustomerObj->exUpdate($date,$rate);
+  $CustomerObj->exUpdate($rate);
   
 }
 
@@ -73,8 +73,12 @@ if(isset($_POST['app_draft_i'])){
   $cover_amt=$_POST['cover_amt'];
   $chg=$_POST['chg'];
   $ttl_amt=$_POST['ttl_amt'];
+  $customer_id = $_SESSION['customer_id'];
+  $customer_name = $_SESSION['user_name'];
 
-  $CustomerObj->remittanceInfo($bene_name,$bene_add,$bene_ac_num,$bene_bk,$bene_br,$ifsc,$purpose,$cover_payment,$rmt_ccy,$rmt_amt,$ex_rate,$cover_ccy,$cover_amt,$chg,$ttl_amt);
+  // echo $bene_name,$bene_add,$bene_ac_num,$bene_bk,$bene_br,$ifsc,$purpose,$cover_payment,$rmt_ccy,$rmt_amt,$ex_rate,$cover_ccy,$cover_amt,$chg,$ttl_amt,$customer_id,$customer_name;
+
+  $CustomerObj->remittanceInfo($bene_name,$bene_add,$bene_ac_num,$bene_bk,$bene_br,$ifsc,$purpose,$cover_payment,$rmt_ccy,$rmt_amt,$ex_rate,$cover_ccy,$cover_amt,$chg,$ttl_amt,$customer_id,$customer_name);
   
 }
 ?>

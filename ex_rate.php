@@ -16,7 +16,7 @@
 
 <body>
   <!-- Navigation -->
-  <?php include 'xNavigation.php'; ?>
+  <?php include 'xNavigation_admin.php'; ?>
   <div class="container jumbotron mt-4">
     <!-- <start of the form> -->
     <form action="ex_rate_confirm.php" method="post">

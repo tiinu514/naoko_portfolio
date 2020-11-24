@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#"> <i class="fa fa-connectdevelop" aria-hidden="true"></i>Tiinu Bank</a>
+      <a class="navbar-brand" href="indexx.php"> <i class="fa fa-connectdevelop" aria-hidden="true"></i>Tiinu Bank</a>
 
       <span class="text-white" id="view_todayE"></span>
       <script type="text/javascript">
