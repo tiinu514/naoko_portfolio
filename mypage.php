@@ -19,49 +19,33 @@ include 'action.php';
    <!-- Navigation -->
  
 <div class="container jumbotron mt-4"> 
-   <?php include 'xNavigation.php'; ?>
-    Hello!
+   <?php include 'xNavigation_login.php'; ?>
+    <h2>Hello,
     <?php
       if(!empty($_SESSION['user_name'])){
-        echo $_SESSION['user_name'];
+        echo $_SESSION['user_name']."!<br>";
+        // echo $_SESSION['category']."!<br>";
       }else{
-        echo "Guest";
+        echo "Guest!/<br>";
       }
       ?>
-   <!-- Search -->
-     <div class="col-md-12 pt-3">Search</div>
-     <div class="col-md-12 pt-3">Remittance History</div>
-     <table class="table table-striped table-hover">
-       <thead class="">
-         <tr>
-          <th>Date</th>
-          <th scope="col">Transfer#</th>
-          <th scope="col">Beneficiary Bank</th>
-          <th scope="col">Beneficiary Name</th>
-          <th scope="col">Beneficiary A/C#</th>
-          <th scope="col">Amount(INR)</th>
-         </tr>
-       </thead>
-       <tbody>
-         <?php
-         $database_row = $CustomerObj->remittanceHistory();
-         foreach($database_row as $row){
-         echo "
-         <tr>
-          <td>".$row["date"]."</td>
-          <td>".$row["transfer_id"]."</td>
-          <td>".$row["bene_bank_name"]."</td>
-          <td>".$row["bene_name"]."</td>
-          <td>".$row["bene_ac_number"]."</td>
-          <td>".$row["rmt_amt"]."</td>
-         </tr>";
-          }
-          ?>
-        </tbody>
-     </table>
-     <div class="btn bg-success">Remittance to my own Account</div>
-     <div class="btn bg-warning">Select from the past history</div>
-     <a href="form_indi_application.php"><div class="btn bg-primary">Remittance to new beneficiary</div><a>
+      </h2>
+      <br>
+   
+     <br>
+     <a href="mypage_history.php"><div class="btn bg-success text-white"><i class="fa fa-search" aria-hidden="true"></i> View my remittance history</div></a>
+     <?php
+      if(!empty($_SESSION['category'])){
+        $category=$_SESSION['category'];
+        // echo $category;
+        if($category=="corporate"){
+         echo '<a href="form_corp_application.php"><div class="btn bg-primary text-white"><i class="fa fa-plus-square-o" aria-hidden="true"></i> Remittance to new beneficiary</div><a>';
+        }else{
+        echo '<a href="form_indi_application.php"><div class="btn bg-primary text-white"><i class="fa fa-plus-square-o" aria-hidden="true"></i> Remittance to new beneficiary</div><a>';
+      }
+    }
+      ?>
+     
   </div>
 </body>
  

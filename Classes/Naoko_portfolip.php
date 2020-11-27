@@ -8,8 +8,9 @@
 
       $sql = "INSERT INTO customers(full_name, address, date_of_birth, visa_validity, contact_number, category, password) VALUES ('$full_name','$address','$dob','$visa','$contact_number','$category',md5('$password'))";
       $result =$this->conn->query($sql);
-
+     
       if($result == TRUE){
+        echo $full_name;
         header('location: sign_up_successed.php');
       }else{
         echo "ERROR";
@@ -33,6 +34,7 @@
         $_SESSION['password']=$row['password'];
         $_SESSION['user_name']=$row['full_name'];
         $_SESSION['user_address']=$row['address'];
+        $_SESSION['category']=$row['category'];
 
   
         header('location: mypage.php');
@@ -90,23 +92,18 @@
  
 
 public function remittanceHistory(){
-    $sql="SELECT date, transfer_id, bene_name, bene_ac_number, bene_bank_name, rmt_amt FROM remittance_history JOIN customers ON remittance_history.customer_id=customers.customer_id order by remittance_history.date";
-    $sql="SELECT date, transfer_id, bene_name, bene_ac_number, bene_bank_name, rmt_amt FROM remittance_history WHERE remittance_history.customer_id=customers.customer_id order by remittance_history.date";
+  $customer_id = $_SESSION['customer_id'];
 
-    // echo $sql;
-    
+  $sql="SELECT date, transfer_id, bene_name, bene_ac_number, bene_bank_name, rmt_amt FROM remittance_history WHERE remittance_history.customer_id=$customer_id order by remittance_history.date";
+
     $result=$this->conn->query($sql);
 
     $blankArray = array();
-    if($result->num_rows > 0){
+    if($result->num_rows >=1){
       while($database_row = $result->fetch_assoc()){
         $blankArray[]=$database_row;
       }
-    
       return $blankArray;
-   
-    }else{
-      return FALSE;
     }
 }
 
@@ -130,5 +127,48 @@ public function exRate($ex_rate){
     return FALSE;
   }
 }
+
+public function getNameAndID(){
+  $sql = "SELECT customer_id,full_name FROM customers ORDER BY customer_id DESC limit 1";
+  $result =$this->conn->query($sql);
+
+  if($result->num_rows==1){
+    $row=$result->fetch_assoc(); 
+    $_SESSION['customer_id']=$row['customer_id'];
+    $_SESSION['full_name']=$row['full_name'];
+    // echo $_SESSION['customer_id'];
+    // echo $_SESSION['full_name'];
+}
+}
+
+public function remittanceHistoryAll(){
+  $sql="SELECT date, transfer_id, bene_name, bene_ac_number, bene_bank_name, rmt_amt FROM remittance_history";
+
+    $result=$this->conn->query($sql);
+
+    $blankArray = array();
+    if($result->num_rows >=1){
+      while($database_row = $result->fetch_assoc()){
+        $blankArray[]=$database_row;
+      }
+      return $blankArray;
+    }
+}
+
+// public function idHistorySearch($id){
+//  $sql="SELECT date, transfer_id, bene_name, bene_ac_number, bene_bank_name, rmt_amt FROM remittance_history WHERE remittance_history.customer_id=$id order by remittance_history.date";
+
+//     $result=$this->conn->query($sql);
+
+//     $blankArray = array();
+//     if($result->num_rows >=1){
+//       while($database_row = $result->fetch_assoc()){
+//         $blankArray[]=$database_row;
+//       }
+//       return $blankArray;
+//     }
+// }
   }
+
+  
   ?>

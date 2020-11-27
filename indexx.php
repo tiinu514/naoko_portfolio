@@ -40,7 +40,7 @@
         <hr>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempore recusandae animi soluta quasi? Asperiores rem dolore eaque vel, porro, soluta unde debitis aliquam laboriosam. Repellat explicabo, maiores!</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis optio neque consectetur consequatur magni in nisi, natus beatae quidem quam odit commodi ducimus totam eum, alias, adipisci nesciunt voluptate. Voluptatum.</p>
-        <a class="btn btn-primary btn-lg" href="#">Call to Action &raquo;</a>
+        <a class="btn btn-primary btn-lg" href="#">Read more &raquo;</a>
       </div>
       <div class="col-md-4 mb-5">
         <h2>Contact Us</h2>
@@ -68,16 +68,18 @@
         <div class="card h-100">
           <img class="card-img-top" src="https://placehold.it/300x200" alt="">
           <div class="card-body">
-          <h4 class="card-title"><i class="fa fa-exchange" aria-hidden="true"></i>Today's exchange rate for INR(TTS)</h4>
+          <h4 class="card-title"><i class="fa fa-exchange" aria-hidden="true"></i>Today's exchange rate for 1INR to JPY(TTS)</h4>
             <ul>
-            <li>Standard rate:
               <?php
               $CustomerObj->getRate();
-              echo $_SESSION["rate"];
+              $dailyrate=$_SESSION["rate"];
+              $dailyrate2=$dailyrate-0.0025;
+              $dailyrate3=$dailyrate-0.0075;
+
+              echo "<li>Standard rate:".$dailyrate."</li>";
+              echo "<li>More than JPY0.5M:".number_format($dailyrate2,4)."</li>";
+              echo "<li>More than JPY1.0M:".number_format($dailyrate3,4)."</li>";
               ?>
-            </li>
-            <li>More than JPY0.5M:</li>
-            <li>More than JPY1.0M:</li>
             </ul>
             <!-- <h4 class="card-title"><i class="fa fa-exchange" aria-hidden="true"></i>Today's exchange rate for INR(TTS)</h4>
             <ul>
@@ -87,7 +89,7 @@
             </ul> -->
           </div>
           <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
+            <a href="conversion_demo.php" class="btn btn-primary">Try Conversion caliculation!</a>
           </div>
         </div>
       </div>
@@ -96,9 +98,9 @@
         <div class="card h-100">
           <img class="card-img-top" src="https://placehold.it/300x200" alt="">
           <div class="card-body">
-            <h4 class="card-title">Application Form</h4>
-            <i class="fa fa-user" aria-hidden="true"></i><a href="#"> #1 Invidual</a>&nbsp;&nbsp;
-            <i class="fa fa-building" aria-hidden="true"></i><a href="#"> #2 Corporate</a>
+            <h4 class="card-title"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Application Form</h4>
+            <i class="fa fa-user" aria-hidden="true"></i><a href="form_indi_free.php"> #1 Individual</a>&nbsp;&nbsp;
+            <i class="fa fa-building" aria-hidden="true"></i><a href="form_corp_free.php"> #2 Corporate</a>
           </div>
           <div class="card-footer">
             <a href="#" class="btn btn-primary">Find Out More!</a>
@@ -110,11 +112,11 @@
         <div class="card h-100">
           <img class="card-img-top" src="https://placehold.it/300x200" alt="">
           <div class="card-body">
-            <h4 class="card-title">Login</h4>
+            <h4 class="card-title"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</h4>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
           </div>
           <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
+            <a href="login.php" class="btn btn-primary">Login now!</a>
           </div>
         </div>
       </div>
@@ -124,11 +126,11 @@
         <div class="card h-100">
           <img class="card-img-top" src="https://placehold.it/300x200" alt="">
           <div class="card-body">
-            <h4 class="card-title">Sign up</h4>
+            <h4 class="card-title"><i class="fa fa-user-plus" aria-hidden="true"></i>Sign up</h4>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
           </div>
           <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
+            <a href="sign_up.php" class="btn btn-primary">Sign up now!</a>
           </div>
         </div>
       </div>
@@ -138,11 +140,11 @@
         <div class="card h-100">
           <img class="card-img-top" src="https://placehold.it/300x200" alt="">
           <div class="card-body">
-            <h4 class="card-title">Access</h4>
+            <h4 class="card-title"><i class="fa fa-map-marker" aria-hidden="true"></i>Access</h4>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
           </div>
           <div class="card-footer">
-            <a href="access.php" class="btn btn-primary">Find Out More!</a>
+            <a href="access.php" class="btn btn-primary">Check the map!</a>
           </div>
         </div>
       </div>
@@ -151,11 +153,11 @@
         <div class="card h-100">
           <img class="card-img-top" src="https://placehold.it/300x200" alt="">
           <div class="card-body">
-            <h4 class="card-title">News</h4>
+            <h4 class="card-title"><i class="fa fa-plus" aria-hidden="true"></i>News</h4>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
           </div>
           <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
+            <a href="#" class="btn btn-primary">Check updates!</a>
           </div>
         </div>
       </div>

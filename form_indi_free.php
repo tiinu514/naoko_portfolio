@@ -20,9 +20,13 @@
          <div class="col-md-12 form-group">
            <!-- Login -->
           <div class="col-md-12 py-3">
-            <h2 class="text-center">Remittance Application Form</h2>
+            <h2 class="text-center">Remittance Application Form for Individual</h2>
           </div>
           
+          <div class="col-md-12">
+             <div class="input-group">
+          </div>
+
           <div class="row">
             <br>
             <div class="row card col-md-12 mx-auto"><br>
@@ -78,10 +82,11 @@
                     <br>
                  </div>
                  
-                </div><br>
-              </div><br>
+                </div>
+              <!-- </div><br> -->
               
             <!-- Purpose -->
+            <div class="row card col-md-12 mx-auto">
               <div class="col-md-12">
               <br>
                 <div class="input-group">
@@ -101,6 +106,7 @@
                     <input class="form-check-input" type="radio" name="cover_payment" id="" value="debit_ac">
                     <label class="form-check-label" for="">Debit A/C&nbsp;&nbsp;&nbsp;</label>
                   </div>    
+              </div>
               </div>
               <br>
             </div>
@@ -163,25 +169,28 @@
              <br>
              </div>
              </div>
-
-             </div><br>
              </div>
-
+             <div class="col-md-12">
+             <input class="form-check-input" type="checkbox" value="cash" id="" >
+             <label for="scales">We declare that the above remittance is not related directly or indirectly to the remittance restricted under the Foreign Exchange and Foreign Trade Act in respect of Iran and North Korea, and other restricted transactions.</label>
+             </div>
+             </div>
+            
             <!-- button1 --><!-- button2 -->
               <div class="row col-md-12">
                <div class="col-md-4"></div>
-                  <button name="app_draft_i" class="btn btn-success center col-md-4 mt-5"  style="width:100%">Submit</button>
+               <a href='indexx.php' class="btn bg-success text-white col-md-4 mt-5">Go home</a>
                 <div class="col-md-4"></div>
               </div>
 
           </div>
 
-         <div class="col-md-3"></div>
+         <div class="col-md-3"> <br> <br></div>
         </div>
        </form>
     </div>
     </div>
-
+    </div>
 
 
 

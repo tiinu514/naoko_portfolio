@@ -15,7 +15,7 @@
 
 <body>
   <!-- Navigation -->
- <?php include 'xNavigation.php'; ?>
+ <?php include 'xNavigation_login.php'; ?>
  <div class="container jumbotron mt-4"> 
    <!-- <start of the form> -->
 

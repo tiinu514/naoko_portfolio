@@ -4,7 +4,7 @@ include 'action.php';
 
 <!DOCTYPE html>
 <html lang="en">
-<title>OVS APP for Individual</title>
+<title>OVS APP for Corporate</title>
 <head>
 
   <meta charset="utf-8">
@@ -17,9 +17,6 @@ include 'action.php';
 </head>
 
 <?php
-// function defaultValue($bene_name){
-  // defaultValue($bene_name,$bene_add,$bene_ac_num,$bene_bk,$bene_br,$ifsc,$purpose,$cover_payment,$ex_rate,$rmt_ccy,$rmt_amt,$cover_ccy,$cover_amt,$chg,$ttl_amt);
-  // // 
   $bene_name="";
   $bene_add="";
   $ifsc="";
@@ -32,77 +29,29 @@ include 'action.php';
   $computeInr="";
   $base="";
   $base_amt="";
+  $rmt_ccy="";
   // }
 
 if(isset($_POST['basic_info'])){
-  $purpose=$_POST['bene_relation'];
-  $bk=$_POST['bank'];
-
-  if($purpose=="self"){
-    if(!empty($_SESSION['user_name'])){
-    }else{
-      echo "Guest";
-    }
-    
-  }elseif($purpose=="family"){
-  }else{
-  }
- 
-
-  if($bk=="BOI"){//if BOI
-    $bk="Bank of India";
-    $chg=1500;
-    }else{ //if OTHER BK
-    $bk="Other";
-    $chg=2000;
-      }
+  $purpose=$_POST['purpose'];
+  // echo $purpose;
 
   if(isset($_POST['basic_info'])){
+        $rmt_ccy=$_POST['rmt_ccy'];
         $base=$_POST['base'];
         $base_amt=$_POST['amt'];
-        $CustomerObj->getRate();
-        $standard_rate=$_SESSION["rate"];
-        // $standard_rate=1.4775;
-        // $chg=2000;
-      
-        // echo "Base is ".$base.number_format($base_amt);
-        // echo $bk."<br>";
+        // $CustomerObj->getRate();
+        // $standard_rate=$_SESSION["rate"];
         
-      
-        if($base=="INR"){
-          $computeJpy=floor($base_amt*$standard_rate);
-          if($computeJpy<500000){
-            $ex_rate=$standard_rate;
-          }elseif($computeJpy>=1000000){
-            $ex_rate=$standard_rate-0.0075;
-          }else{
-            $ex_rate=$standard_rate-0.0025;
-            }
-          $computeJpy=floor($base_amt*$ex_rate);
-          $ttl_amt=$computeJpy+$chg;
+        
+        if($rmt_ccy=="INR"){
+          $chg=2000;
         }else{
-          if($base_amt<500000){
-            $ex_rate=$standard_rate;
-          }elseif($base_amt>=1000000){
-          $ex_rate=$standard_rate-0.0075;
-          }else{
-          $ex_rate=$standard_rate-0.0025;
-          }
-          $computeInr=floor($base_amt/$standard_rate);
-          $ttl_amt =$base_amt+$chg;
+          $chg=5000;
         }
-        // echo " @".number_format($ex_rate,4)."<br>";
-      
-          if($base=="JPY"){
-          // echo "Equivalent INR is ".number_format($computeInr)."<br>";
-        }else{
-          // echo "Equivalent JPY is ".number_format($computeJpy)."<br>";
-        }
-          // echo "Commission charge is: JPY".number_format($chg)."<br>";
-          // echo "Total payable amount is: JPY".number_format($ttl_amt)."<br>";
-      
       }
-}
+  }
+
 
 ?>
 
@@ -121,7 +70,6 @@ if(isset($_POST['basic_info'])){
           </div>
           
           
-           
           <div class="col-md-12">
              <div class="input-group"> </div>
                
@@ -136,36 +84,34 @@ if(isset($_POST['basic_info'])){
                 <div class="container row border border-light rounded bg-light mx-auto">
                   <!-- <form> -->
                   <form action="" method="post">
-                        <div class="mt-2 pl-5"><i class="fa fa-user" aria-hidden="true"></i> I am sending to &nbsp;
-                          <select class="border-dark" name="bene_relation" id="" required>
-                          <!-- <option selected disabled>Select</option> -->
-                          <option value="self" class="" required>myself</option>
-                          <option value="family" class="" required>my family</option>
-                          <option value="other" class="" required>others</option>
-                          </select>
-                          Beneficiary bank is 
-                          <select name="bank" id="" required>
-                            <!-- <option selected disabled>Select</option> -->
-                            <option value="BOI" class="">Bank of India</option>
-                            <option value="Other">Other Banks</option>
-                          </select>&nbsp;
-                        </div>
-                    
-                        <div class="mt-2 pl-5"><i class="fa fa-calculator" aria-hidden="true"></i> I want to remit INR based on &nbsp;
-                          <select name="base" id="" required>
-                            <!-- <option selected disabled>Select</option> -->
+                        <div class="mt-2 pl-5"><i class="fa fa-calculator" aria-hidden="true"></i> We want to remit
+                        <select name="rmt_ccy" id="" required>
                             <option value="INR">INR</option>
+                            <option value="USD">USD</option>
                             <option value="JPY">JPY</option>
                           </select>
-                          Amount is 
-                          <input type="number" name="amt" value="" required >&nbsp;
+                        equivalent to
+                          <select name="base" id="" required>
+                            <!-- <option selected disabled>Select</option> -->
+                            <option value="JPY">JPY</option>
+                            <option value="USD">USD</option>
+                          </select>
+                          amount
+                          <input type="number" name="amt" value="" placeholder="100,000" required >.&nbsp;<br>
+                          This payment is for
+                          <select name="purpose" id="" required>
+                            <option value="trade_settlement">Trade Settlement</option>
+                            <option value="others">Others (*Please specify below)</option>
+                            
+                          </select>.
                           <button type="submit" name="basic_info" class="btn btn-success">click</button><br>
+                          
                   </form>
                 </div>
               </h6>
 
               <!-- <form2> -->
-              <form action="form_indi_confirm.php" method="post">
+              <form action="#" method="post">
                 <div class="row card col-md-12 mx-auto ">
                   
                   <h5 class="card-subtitle my-2 text-muted">Payee</h5>
@@ -173,27 +119,14 @@ if(isset($_POST['basic_info'])){
                       <div class="col-md-12">
                         <div class="input-group">
                         <label class="col-md-3" for="">Beneficiary Name</label>
-                        <?php
-                        if($purpose=="self"){
-                          echo "<input name='bene_name' value='".$_SESSION['user_name']."' class='form-control col-md-9' readonly required>";
-                        }else{
-                          echo  '<input name="bene_name" class="form-control col-md-9" required>';
-                        }
-                        ?>
+                       <input name="bene_name" class="form-control col-md-9" required>
                         </div>
                       </div>
                     <!-- Bene add-->
                       <div class="col-md-12">
                         <div class="input-group">
                         <label class="col-md-3" for="">Beneficiary address</label>
-                        <?php
-                        if($purpose=="self"){
-                          echo "<input name='bene_add' value='".$_SESSION['user_address']."' class='form-control col-md-9' readonly>";
-                        }else{
-                          echo  '<input name="bene_add" placeholder="city name" class="form-control col-md-9">';
-                        }
-                        ?>
-                        
+                        <input name="bene_add" class="form-control col-md-9">
                         </div>
                       </div>
                     <!-- Bene ac -->
@@ -214,13 +147,7 @@ if(isset($_POST['basic_info'])){
                   <div class="col-md-12">
                     <div class="input-group">
                     <label class="col-md-3" for="">Beneficiary Bank</label>
-                      <?php
-                      if($bk=="Bank of India"){
-                        echo '<input name="bene_bk" value="Bank of India" class="form-control col-md-9" readonly>';
-                      }else{
-                        echo '<input name="bene_bk" type="text" class="form-control col-md-9">';
-                      }
-                    ?>
+                     <input name="bene_bk" type="text" class="form-control col-md-9">
                     </div>
                   </div>
                  <!-- Bene branch -->
@@ -233,41 +160,75 @@ if(isset($_POST['basic_info'])){
                  <!-- IFSC Code -->
                   <div class="col-md-12">
                       <div class="input-group">
-                      <label class="col-md-3" for="">IFSC Code</label>
-                        <?php
-                        if($bk=="Bank of India"){
-                          echo '<input name="ifsc" placeholder="Not required" value="Null" class="form-control col-md-9" readonly>';
-                        }else{
-                          echo '<input name="ifsc" placeholder="11 digits code" class="form-control col-md-9">';
-                        }
-                      ?>
-                      
+                      <label class="col-md-3" for="">SWIFT Code</label>
+                      <input name="b_swift" placeholder="11 digits code" class="form-control col-md-9">
+                      </div>
+                  </div>
+                    <!-- IFSC Code -->
+                    <div class="col-md-12">
+                      <div class="input-group">
+                      <label class="col-md-3" for="">Intermediary Bank<br>(SWIFT Code)</label>
+                      <input name="in_swift" placeholder="11 digits code" class="form-control col-md-9">
                       </div>
                       <br>
                   </div>
                  
-              </div><br>
-              
-            <!-- Purpose -->
-              <div class="col-md-12">
-              <br>
-                <div class="input-group">
-                 <label class="col-md-3" for="">Purpose of Remittance</label>
-                 <?php
-                    if($purpose=="self"){
-                      echo '<input name="purpose" value="Savings/ Transfer to own A/C" class="form-control col-md-9" readonly>';
-                    }elseif($purpose=="family"){
-                      echo '<input name="purpose" value="Family support" class="form-control col-md-9" readonly>';
-                    }else{
-                      echo '<input name="purpose" placeholder="Please specify" class="form-control col-md-9" >';
-                    }
-                   ?>
-                </div>
               </div>
+
+
+                <!-- Purpose -->
+              <div class="row card col-md-12 mx-auto">
+                <h5 class="card-subtitle my-2 text-muted">Purpose of Remittance</h5>
+                 <!-- Trade settlement -->
+                  <div class="col-md-12">
+                    <?php
+                    if($purpose=="trade_settlement"){
+                     echo '<div class="input-group">
+                      <label class="col-md-3" for="">Trade settlement</label>
+                       <div class="form-check form-check-inline">
+                         <input class="form-check-input" type="radio" name="cover_payment" value="cash" id="" required>
+                         <label class="form-check-label" for="">Final Payment&nbsp;&nbsp;&nbsp;</label>
+                         <input class="form-check-input" type="radio" name="cover_payment" id="" value="lcoal_trf" required>
+                         <label class="form-check-label" for="">Part Paymemnt&nbsp;&nbsp;&nbsp;</label>
+                         <input class="form-check-input" type="radio" name="cover_payment" id="" value="debit_ac" required>
+                         <label class="form-check-label" for="">Advance Payment&nbsp;&nbsp;&nbsp;</label>
+                     
+                       </div>
+                       <br>
+                        <div class="col-md-12">
+                         <div class="input-group">
+                         <label class="col-md-3" for=""></label>
+                           Goods&nbsp;<input name="bene_br" class="form-control col-md-9" required>
+                           &nbsp;&nbsp;Port of Loading&nbsp;<input name="bene_br" class="form-control col-md-9" required>
+                           &nbsp;&nbsp;Orign&nbsp;<input name="bene_br" class="form-control col-md-9" required>
+                         </div></div><br>';
+
+                    }elseif($puprse="others"){
+                     echo '<div class="col-md-12">
+                      <div class="input-group">
+                      <label class="col-md-3" for="">Others: Please specify</label>
+                        <input name="bene_br" class="form-control col-md-9" required>
+                      </div>';
+                    }
+                    
+                    ?>
+
+              
+                 
+              </div>
+              <br>
+
+              </div>
+
+
+              </div>
+           
             <!-- Cover_payment -->
+            <div class="row card col-md-12 mx-auto">
+                <h5 class="card-subtitle my-2 text-muted">Cover Payment</h5>
              <div class="col-md-12">
                 <div class="input-group">
-                 <label class="col-md-3" for="">Cover Payment</label>
+                 <label class="col-md-3" for="">Payment method</label>
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="cover_payment" value="cash" id="" required>
                     <label class="form-check-label" for="">Cash&nbsp;&nbsp;&nbsp;</label>
@@ -275,11 +236,12 @@ if(isset($_POST['basic_info'])){
                     <label class="form-check-label" for="">Local Transfer&nbsp;&nbsp;&nbsp;</label>
                     <input class="form-check-input" type="radio" name="cover_payment" id="" value="debit_ac" required>
                     <label class="form-check-label" for="">Debit A/C&nbsp;&nbsp;&nbsp;</label>
+                    <input class="form-check-input border-light" type="text" name="cover_payment" id="" Placeholder="AC#" required>
                   </div>    
                </div>
                <br>
              </div>
-
+             </div>
             <!-- Caliculation -->
                 <div class="row card col-md-12 mx-auto"><br>
                   <h5 class="card-subtitle my-2 text-muted">Caliculation</h5>
@@ -291,7 +253,7 @@ if(isset($_POST['basic_info'])){
                   <!-- Ex-rate -->
                     <div class="input-group">
                     <label class="col-md-2" for="">Exchange rate @</label>
-                  <input name="ex_rate" value="<?php echo $ex_rate; ?>" readonly class="form-control col-md-1" >
+                  <input name="ex_rate" value="" class="form-control col-md-1" required> &nbsp*Please insert your booked rate
                 </div>
              
               <table class="table text-center table-sm">
@@ -304,7 +266,7 @@ if(isset($_POST['basic_info'])){
                 </tr>
                 <tr>
                   <td></td>
-                  <td><input name="rmt_ccy" value="INR" class="form-control col-md-2 mx-auto text-center" readonly></td>
+                  <td><input name="rmt_ccy" value="<?php echo $rmt_ccy;?>" class="form-control col-md-2 mx-auto text-center" readonly></td>
                   <td>
                     <?php
                     if($base=="INR"){
@@ -323,7 +285,7 @@ if(isset($_POST['basic_info'])){
                 </tr>
                 <tr>
                   <td></td>
-                  <td><input name="cover_ccy" value="JPY" class="form-control col-md-2 mx-auto text-center" readonly></td>
+                  <td><input name="cover_ccy" value="<?php echo $base;?>" class="form-control col-md-2 mx-auto text-center" readonly></td>
                   <td>
                   <?php
                     if($base=="INR"){
@@ -366,15 +328,14 @@ if(isset($_POST['basic_info'])){
              </div>
              <div class="col-md-12">
              <input class="form-check-input" type="checkbox" value="cash" id="" required>
-             <label for="scales">I declare that the above remittance is not related directly or indirectly to the remittance restricted under the Foreign Exchange and Foreign Trade Act in respect of Iran and North Korea, and other restricted transactions.</label>
+             <label for="scales">We declare that the above remittance is not related directly or indirectly to the remittance restricted under the Foreign Exchange and Foreign Trade Act in respect of Iran and North Korea, and other restricted transactions.</label>
              </div>
-
              </div>
 
             <!-- button1 --><!-- button2 -->
               <div class="row col-md-12">
                <div class="col-md-4"></div>
-                  <button type="" name="app_draft_i" class="btn btn-success center col-md-4 mt-5"  style="width:100%">Submit</button>
+                  <button type="" name="xxxxx" class="btn btn-danger center col-md-4 mt-5"  style="width:100%">Not available</button>
                 <div class="col-md-4"></div>
               </div>
 

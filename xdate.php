@@ -1,4 +1,4 @@
-<span id="view_todayE"></span>
+<!-- <span id="view_todayE"></span>
 
 <script type="text/javascript">
 document.getElementById("view_todayE").innerHTML = getTodayE();
@@ -19,4 +19,4 @@ function getTodayE() {
 	var s = month[mon] + " " + day + ", " + year + " (" +youbi[you] + ")";
 	return s;
 }
-</script>
+</script> -->

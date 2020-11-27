@@ -21,7 +21,8 @@
 
   <div class="col-md-12 pt-3">
         <h2 class="text-center">Welcome to Admin Page!</h2><br>
-        <a href="ex_rate.php"><div class="update btn btn-success">Exchange-rate update</div></a>
+        <a href="ex_rate.php"><div class="update btn btn-success">Exchange-rate update</div></a><br><br>
+        <a href="mypage_history_admin.php"><div class="update btn btn-primary">Customer Remittance Record </div></a>
 
     </div>
 
